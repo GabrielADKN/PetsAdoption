@@ -46,7 +46,7 @@ def add_pet():
 
         Pet.find_or_create_pet(name, species, photo_url, age, notes, True)
 
-        flash(f"Added {name} the {species}!")
+        flash(f"Added {name} the {species}!", "success")
         return redirect(url_for("list_pets"))
     else:
         return render_template("add_pet.html", form=form)
@@ -68,7 +68,7 @@ def show_pet(id):
 
         db.session.commit()
 
-        flash(f"Updated {pet.name} the {pet.species}!")
+        flash(f"Updated {pet.name} the {pet.species}!", "success")
         return redirect(url_for("list_pets"))
     else:
         return render_template("show_pet.html", pet=pet, form=form)
