@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+
+{% block title %}Pets Adoption {% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="/static/pets.css">
+{% endblock %}
+
+{% block content %}
+    <h1>Pets</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for pet in pets %}
+        <div class="col">
+            <div class="card">
+                {% if pet.photo_url %}
+                <a href="/pets/{{pet.id}}"><img src="{{ pet.photo_url }}" alt="pet image" class="card-img-top" style=" height: 300px"></a>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-success"><b>{{ pet.name }}</b></h5>
+                    <p class="card-text">
+                        <!-- Specie : {{pet.species}}
+                        {% if pet.age %}
+                        <br>Age : {{pet.age}}
+                        {% endif %}
+                        {% if pet.notes %}
+                        <br>Notes : {{pet.notes}}
+                        {% endif %} -->
+                        {% if pet.available %}
+                        <br>Available : <span class="text-success"><b>Yes</b></span>
+                        {% else %}
+                        <br>Available : <span class="text-danger"><b>No</b></span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col">
+            <div class="row row-cols-1">
+                <a class="btn btn-success btn-lg" href="/pets/add">Add New Pet</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
